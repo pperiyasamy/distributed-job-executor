@@ -1,10 +1,10 @@
 package com.util.actors;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
-import com.lightbend.akka.sample.Printer;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
@@ -17,11 +17,20 @@ public class JobExecutor extends AbstractActor {
     return Props.create(JobExecutor.class, () -> new JobExecutor());
   }
 
+  static public abstract class Task implements Callable<CompletableFuture<Void>>,
+  Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+  }
+
   static public class Job {
     private final String jobKey;
-    private final Callable<CompletableFuture<Void>> task;
+    private final Task task;
 
-    public Job(String jobKey, Callable<CompletableFuture<Void>> task) {
+    public Job(String jobKey, Task task) {
       this.jobKey = jobKey;
       this.task = task;
     }
@@ -30,7 +39,7 @@ public class JobExecutor extends AbstractActor {
       return jobKey;
     }
 
-    public Callable<CompletableFuture<Void>> getTask() {
+    public Task getTask() {
       return task;
     }
 
