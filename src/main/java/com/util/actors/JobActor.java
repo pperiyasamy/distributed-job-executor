@@ -1,7 +1,7 @@
 package com.util.actors;
 
 import java.util.concurrent.CompletableFuture;
-import com.util.actors.JobExecutor.Job;
+import com.util.jobs.Job;
 import akka.actor.AbstractActor;
 import akka.actor.Props;
 import akka.event.Logging;
