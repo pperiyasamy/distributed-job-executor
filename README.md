@@ -6,5 +6,5 @@ environment using Akka Remoting/Clustering
 JobDelegator can run in multiple systems which are part of jobdelegator
 cluster role.
 
-JobExecutor runs only on specific nod which receives jobs from JobDelegator
+JobExecutor runs only on specific node which receives jobs from JobDelegator
 and execute it using JobActor.
