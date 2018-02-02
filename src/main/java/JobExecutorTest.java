@@ -33,7 +33,7 @@ public class JobExecutorTest {
 
       ActorSystem system = ActorSystem.create("JobExecutorLookupSystem", config);
 
-      final String path = "akka.tcp://JobExecutorSystem@127.0.0.1:2552/user/jobexecutor";
+      final String path = "akka.tcp://JobExecutorSystem@127.0.0.1:2551/user/jobexecutor";
       final ActorRef actor = system.actorOf(Props.create(JobDelegator.class, path), "jobdelegator");
       Job job1 = getJob("jk1");
       Job job2 = getJob("jk2");

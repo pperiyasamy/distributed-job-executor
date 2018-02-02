@@ -10,10 +10,6 @@ import akka.actor.Props;
 public class JobExecutor extends AbstractActor {
   final Map<String, ActorRef> jobKeyToActor = new HashMap<>();
 
-  static public Props props() {
-    return Props.create(JobExecutor.class, () -> new JobExecutor());
-  }
-
   private void onExecute(Job job) {
     String jobKey = job.getJobKey();
     ActorRef jobActor = jobKeyToActor.get(jobKey);
