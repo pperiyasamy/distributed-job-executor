@@ -26,9 +26,7 @@ public class JobExecutorTest {
     String[] ports = {"2552", "2553"};
     for (String port : ports) {
       Config config = ConfigFactory
-          .parseString("akka.remote.netty.tcp.port=" + port + "\n"
-              + "akka.remote.artery.canonical.port=" + port)
-          .withFallback(ConfigFactory.parseString("akka.cluster.roles = [jobdelegator]"))
+          .parseString("akka.remote.netty.tcp.port=" + port)
           .withFallback(ConfigFactory.load("jobdelegator"));
 
       ActorSystem system = ActorSystem.create("JobExecutorLookupSystem", config);
